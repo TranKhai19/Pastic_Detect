@@ -1,3 +1,5 @@
+import time
+
 import torch
 import torchaudio
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
@@ -47,11 +49,13 @@ def detect_plastic(image_path):
                 sd.play(ding_sound_stereo.T, samplerate=metadata_ding)  # Transpose for correct channel order
             else:
                 sd.play(ding_sound.numpy().T, samplerate=metadata_ding)  # Play as is (stereo)
+            time.sleep(1)
             return
 
     print("No plastic waste detected.")
     sd.play(beep_sound.numpy().T, samplerate=metadata_beep)  # Play beep sound
+    time.sleep(1)
 
 # Example usage
-image_path = "plasticwastesstock.jpg"
+image_path = "media.jpg"
 detect_plastic(image_path)
